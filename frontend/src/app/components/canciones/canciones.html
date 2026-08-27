@@ -1,55 +1,36 @@
 <div class="canciones-container">
   <h3>Canciones del Repertorio</h3>
-
   <div class="canciones-lista">
-    <div class="cancion-item" *ngFor="let cancion of canciones">
-      <span class="cancion-nombre">{{ cancion.nombre }}</span>
-      <div class="cancion-imagen-wrapper" *ngIf="cancion.url; else sinImagen">
+    <div class="cancion-item" *ngFor="let cancion of repositorioActual()">
+      <span class="cancion-nombre">{{ cancion }}</span>
+      <div class="cancion-imagen-wrapper">
         <img
-          [src]="cancion.url"
-          [alt]="cancion.nombre"
+          [src]="servicios.obtenerUrlImagen(cancion)"
+          [alt]="cancion"
           class="cancion-imagen"
-          (click)="abrirEnNuevaPestana(cancion.url)"
+          (click)="abrirEnNuevaPestana(servicios.obtenerUrlImagen(cancion))"
           title="Click para abrir en nueva pestaña"
         />
       </div>
-      <ng-template #sinImagen>
-        <p class="sin-imagen">No se ha agregado la imagen para "{{ cancion.nombre }}"</p>
-      </ng-template>
     </div>
-    <p class="vacio" *ngIf="canciones.length === 0">
+    <p class="vacio" *ngIf="repositorioActual().length === 0">
       No hay canciones en el repertorio.
     </p>
   </div>
-
   <div class="canciones-busqueda">
-    <h4>Buscar imagen</h4>
     <div class="busqueda-input">
-      <input
-        type="text"
-        [(ngModel)]="busqueda"
-        placeholder="Nombre de la cancion"
-        (keyup.enter)="buscarImagen()"
+    <input type="text" placeholder="Nombre de la cancion" [(ngModel)]="cancionBuscar">
+    <button (click)="buscarCancion(cancionBuscar)">Buscar</button>
+    </div>
+      <div class="busqueda-resultado">
+      <img
+      [src]="urlCancion()"
+      alt="hola"
+        class="imagenEncontrada"
+        (click)="abrirEnNuevaPestana(urlCancion())"
+        title="Click para abrir en una nueva pestaña"
       />
-      <button (click)="buscarImagen()">Buscar</button>
     </div>
 
-    <div class="busqueda-resultado" *ngIf="busco">
-      <div class="resultado-item" *ngFor="let res of resultadosBusqueda">
-        <span class="resultado-nombre">{{ res.nombre }}</span>
-        <div class="resultado-imagen-wrapper">
-          <img
-            [src]="res.url"
-            [alt]="res.nombre"
-            class="resultado-imagen"
-            (click)="abrirEnNuevaPestana(res.url)"
-            title="Click para abrir en nueva pestaña"
-          />
-        </div>
-      </div>
-      <p class="no-encontrado" *ngIf="resultadosBusqueda.length === 0">
-        No se ha agregado la imagen para "{{ busqueda }}"
-      </p>
-    </div>
   </div>
 </div>

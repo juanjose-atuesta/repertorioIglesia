@@ -1,0 +1,8 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "3001:3001"
+    volumes:
+      - /ruta/real/en/el/servidor/filebrowser/canciones:/app/images
+      - ./backend/data:/app/data

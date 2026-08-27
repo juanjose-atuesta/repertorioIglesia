@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Servicios } from '../../services/servicios/servicios';
+import { signal } from '@angular/core';
 @Component({
   imports: [FormsModule, CommonModule],
   selector: 'app-repertorio',
@@ -16,7 +17,7 @@ export class Repertorio {
   ) { }
   contador: number = 1;
   canciones: string[] = [];
-  repertorioActual: string[] = [];
+  repertorioActual = signal<string[]>([]);
 
   onSubmit() {
     console.log("hola");
@@ -41,24 +42,31 @@ export class Repertorio {
       this.contador -= 1;
     }
   }
-
   agregarRepertorio() {
-    this.servicios.guardarRepertorio(this.canciones)
-    this.obtenerRepertorioActual();
-  }
+    console.log("estas canciones se agregaron al repertorio");
+    console.log(this.canciones);
 
+    this.servicios.guardarRepertorio(this.canciones).subscribe({
+      next: (res) => {
+        console.log('Guardado:', res);
+        this.obtenerRepertorioActual(); // llama esto DESPUÉS de que el guardado terminó
+      },
+      error: (err) => console.error('Error al guardar:', err)
+    });
+  }
   obtenerRepertorioActual(): void {
     this.servicios.obtenerRepertorio().subscribe({
       next: (canciones) => {
-        this.repertorioActual = canciones; // aquí sí ya tienes el dato real
+        this.repertorioActual.set(canciones); // aquí sí ya tienes el dato real
+        console.log("repertorio cargado al iniciar", canciones, this.repertorioActual);
       },
       error: (err) => console.error('Error:', err)
     });
-    console.log(this.repertorioActual);
   }
 
   ngOnInit() {
     this.obtenerRepertorioActual();
+    console.log("ngOnInit")
   }
 
 

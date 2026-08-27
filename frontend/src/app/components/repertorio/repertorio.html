@@ -3,7 +3,7 @@
     <h2>Set Repertorio</h2>
     <form (ngSubmit)="onSubmit()">
       <div *ngFor="let i of rango" class="cancion-input-row">
-        <input type="text" #inputCancion="" placeholder="Nombre de la canción" />
+        <input type="text" #inputCancion placeholder="Nombre de la canción" />
         <button type="button" (click)="agregarCancion(inputCancion.value)">Agregar</button>
         <button type="button" (click)="eliminarCancion(inputCancion.value)">Eliminar</button>
       </div>
@@ -14,7 +14,7 @@
   <div class="main-actualRepertorio">
     <h2>Repertorio Actual</h2>
     <ul>
-      <li *ngFor="let i of repertorioActual">{{ i }}</li>
+      <li *ngFor="let i of repertorioActual()">{{ i }}</li>
     </ul>
   </div>
 </div>
