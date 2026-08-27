@@ -1,0 +1,20 @@
+.letras-container {
+  padding: 1.2rem;
+  color: #e0e0e0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.letras-container h3 {
+  font-size: 1.1rem;
+  color: #fbbf24;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 1rem;
+}
+
+.placeholder {
+  color: #666;
+  font-style: italic;
+  text-align: center;
+  padding: 2rem 1rem;
+}

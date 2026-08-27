@@ -1,0 +1,55 @@
+<div class="canciones-container">
+  <h3>Canciones del Repertorio</h3>
+
+  <div class="canciones-lista">
+    <div class="cancion-item" *ngFor="let cancion of canciones">
+      <span class="cancion-nombre">{{ cancion.nombre }}</span>
+      <div class="cancion-imagen-wrapper" *ngIf="cancion.url; else sinImagen">
+        <img
+          [src]="cancion.url"
+          [alt]="cancion.nombre"
+          class="cancion-imagen"
+          (click)="abrirEnNuevaPestana(cancion.url)"
+          title="Click para abrir en nueva pestaña"
+        />
+      </div>
+      <ng-template #sinImagen>
+        <p class="sin-imagen">No se ha agregado la imagen para "{{ cancion.nombre }}"</p>
+      </ng-template>
+    </div>
+    <p class="vacio" *ngIf="canciones.length === 0">
+      No hay canciones en el repertorio.
+    </p>
+  </div>
+
+  <div class="canciones-busqueda">
+    <h4>Buscar imagen</h4>
+    <div class="busqueda-input">
+      <input
+        type="text"
+        [(ngModel)]="busqueda"
+        placeholder="Nombre de la cancion"
+        (keyup.enter)="buscarImagen()"
+      />
+      <button (click)="buscarImagen()">Buscar</button>
+    </div>
+
+    <div class="busqueda-resultado" *ngIf="busco">
+      <div class="resultado-item" *ngFor="let res of resultadosBusqueda">
+        <span class="resultado-nombre">{{ res.nombre }}</span>
+        <div class="resultado-imagen-wrapper">
+          <img
+            [src]="res.url"
+            [alt]="res.nombre"
+            class="resultado-imagen"
+            (click)="abrirEnNuevaPestana(res.url)"
+            title="Click para abrir en nueva pestaña"
+          />
+        </div>
+      </div>
+      <p class="no-encontrado" *ngIf="resultadosBusqueda.length === 0">
+        No se ha agregado la imagen para "{{ busqueda }}"
+      </p>
+    </div>
+  </div>
+</div>
