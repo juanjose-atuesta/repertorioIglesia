@@ -6,7 +6,7 @@ services:
       - "3002:3002"
     volumes:
       - /home/juan/compartidos/CancionesIglesia:/app/images
-      - ./backend/data:/app/data
+      - /home/juan/compartidos/CancionesIglesia/letras:/app/data
     restart: unless-stopped
 
   frontend:
