@@ -1,8 +1,19 @@
 services:
   backend:
     build: ./backend
+    container_name: repertorio-backend
     ports:
-      - "3002:3001"
+      - "3002:3002"
     volumes:
-      - /home/juan/compartidos/CancionesIglesia:/app/images
+      - /home/juanjo117/compartidos/CancionesIglesia:/app/images
       - ./backend/data:/app/data
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    container_name: repertorio-frontend
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
