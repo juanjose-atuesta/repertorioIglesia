@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import { CancionesConLetra } from './models';
 import { forkJoin } from 'rxjs'
 import { map, switchMap } from 'rxjs/operators'
 
@@ -48,4 +48,21 @@ export class Servicios {
       })
     )
   }
+
+
+  obtenerCancionesRepertorio() {
+    return this.http.get<CancionesConLetra[]>(this.apiURL + "letras/repertorio");
+  }
+
+  buscarLetraCancion(nombreCancion: any) {
+    return this.http.get<CancionesConLetra>(this.apiURL + "letras/buscar?nombre=" + nombreCancion);
+
+
+  }
+
+  guardarLetraCancion(cancion: string[]) {
+    return this.http.post(this.apiURL + "letras", cancion);
+  }
+
+
 }

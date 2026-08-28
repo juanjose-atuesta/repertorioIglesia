@@ -4,5 +4,5 @@ services:
     ports:
       - "3001:3001"
     volumes:
-      - /ruta/real/en/el/servidor/filebrowser/canciones:/app/images
+      - /home/juan/compartidos/CancionesIglesia:/app/images
       - ./backend/data:/app/data

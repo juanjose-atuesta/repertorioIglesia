@@ -1,20 +1,107 @@
-.letras-container {
+.main-letras {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
   padding: 1.2rem;
   color: #e0e0e0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.letras-container h3 {
-  font-size: 1.1rem;
-  color: #fbbf24;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  margin-bottom: 1rem;
+/* ── Repertorio con letras ── */
+.letras-repertorio {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.placeholder {
-  color: #666;
-  font-style: italic;
-  text-align: center;
-  padding: 2rem 1rem;
+.repertorio-letrasCanciones {
+  background: #16162a;
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  border-left: 3px solid #a78bfa;
+  transition: background 0.2s;
+}
+
+.repertorio-letrasCanciones:hover {
+  background: #1f1f3a;
+}
+
+.repertorio-letrasCanciones h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #c4b5fd;
+  margin: 0 0 0.6rem 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.repertorio-letrasCanciones p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #e0e0e0;
+  white-space: pre-line; /* respeta saltos de línea de la letra */
+  margin: 0;
+}
+
+.repertorio-letrasCanciones hr {
+  border: none;
+  border-top: 1px solid #a78bfa33;
+  margin-top: 1rem;
+}
+
+/* ── Buscar letra ── */
+.letras-buscar {
+  border-top: 1px solid #a78bfa33;
+  padding-top: 1.2rem;
+}
+
+.letras-buscar input {
+  padding: 0.55rem 0.8rem;
+  border: 1px solid #444;
+  border-radius: 8px;
+  background: #16162a;
+  color: #fff;
+  font-size: 0.85rem;
+  outline: none;
+  transition: border-color 0.25s;
+  margin-right: 0.5rem;
+  width: 240px;
+  max-width: 100%;
+}
+
+.letras-buscar input:focus {
+  border-color: #34d399;
+}
+
+.letras-buscar button {
+  padding: 0.55rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: #34d399;
+  color: #1a1a2e;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.letras-buscar button:hover {
+  background: #6ee7b7;
+}
+
+.letras-cancionEncontrada {
+  margin-top: 1rem;
+  background: #16162a;
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  border-left: 3px solid #34d399;
+  min-height: 1.5rem;
+}
+
+.letras-cancionEncontrada p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #e0e0e0;
+  white-space: pre-line;
+  margin: 0;
 }

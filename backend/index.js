@@ -75,5 +75,80 @@ app.post('/api/repertorio', (req, res) => {
   res.json({ ok: true, canciones });
 });
 
+// AQUI EMPIEZA EL BACKEND PARA LAS LETRAS DE LAS canciones
+//
+//
+const LETRAS_PATH = path.join(__dirname, 'data', 'letras.json');
+
+function ensureLetrasFile() {
+  if (!fs.existsSync(LETRAS_PATH)) {
+    fs.mkdirSync(path.dirname(LETRAS_PATH), { recursive: true });
+    fs.writeFileSync(LETRAS_PATH, JSON.stringify({ canciones: [], letras: [] }, null, 2));
+  }
+}
+
+function leerLetras() {
+  ensureLetrasFile();
+  return JSON.parse(fs.readFileSync(LETRAS_PATH, 'utf-8'));
+}
+
+function guardarLetras(data) {
+  ensureLetrasFile();
+  fs.writeFileSync(LETRAS_PATH, JSON.stringify(data, null, 2));
+}
+
+// 1. Nombre y letra de las canciones del repertorio actual
+app.get('/api/letras/repertorio', (req, res) => {
+  const { canciones, letras } = leerLetras();
+  const repertorioActual = leerRepertorio(); // array de nombres, tu función ya existente
+
+  const combinado = repertorioActual
+    .map(nombre => {
+      const index = canciones.indexOf(nombre);
+      if (index === -1) return null;
+      return { nombre, letra: letras[index] };
+    })
+    .filter(Boolean); // descarta las que no tengan letra guardada
+
+  res.json(combinado);
+});
+
+// 2. Buscar la letra de UNA canción por nombre
+app.get('/api/letras/buscar', (req, res) => {
+  const { nombre } = req.query;
+
+  if (!nombre) {
+    return res.status(400).json({ error: 'Falta el parámetro nombre' });
+  }
+
+  const { canciones, letras } = leerLetras();
+  const index = canciones.indexOf(nombre);
+
+  if (index === -1) {
+    return res.status(404).json({ error: 'Canción no encontrada' });
+  }
+
+  res.json({ nombre, letra: letras[index] });
+});
+
+// 3. Guardar nombre + letra de una canción nueva
+// Body esperado: ["Nombre de la cancion", "letra completa aqui..."]
+app.post('/api/letras', (req, res) => {
+  const datos = req.body;
+
+  if (!Array.isArray(datos) || datos.length !== 2) {
+    return res.status(400).json({ error: 'Se esperaba un array [nombre, letra]' });
+  }
+
+  const [nombre, letra] = datos;
+  const data = leerLetras();
+
+  data.canciones.push(nombre);
+  data.letras.push(letra);
+
+  guardarLetras(data);
+  res.json({ ok: true, nombre, letra });
+});
+
 
 app.listen(3001, () => console.log('Servidor en http://localhost:666'));
