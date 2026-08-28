@@ -5,7 +5,7 @@ services:
     ports:
       - "3002:3002"
     volumes:
-      - /home/juanjo117/compartidos/CancionesIglesia:/app/images
+      - /home/juan/compartidos/CancionesIglesia:/app/images
       - ./backend/data:/app/data
     restart: unless-stopped
 
