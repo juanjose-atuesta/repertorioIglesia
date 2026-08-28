@@ -20,7 +20,10 @@ function loadIndex() {
 }
 
 loadIndex(); // se corre una vez al arrancar
-
+fs.watch(IMAGES_DIR, (eventType, filename) => {
+  console.log(`Cambio detectado: ${eventType} - ${filename}`);
+  loadIndex(); // vuelve a leer la carpeta completa
+});
 const REPERTORIO_PATH = path.join(__dirname, 'data', 'repertorio.json');
 
 function ensureRepertorioFile() {
