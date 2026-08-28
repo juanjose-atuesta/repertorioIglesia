@@ -53,3 +53,24 @@
 .guardar-cancion button:hover {
   background: #c4b5fd;
 }
+@media (max-width: 768px) {
+  .guardar-cancion {
+    padding: 0.9rem 1rem;
+  }
+
+  .guardar-cancion button {
+    align-self: stretch;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .guardar-cancion h3 {
+    font-size: 0.85rem;
+  }
+
+  .guardar-cancion input,
+  .guardar-cancion textarea {
+    font-size: 0.8rem;
+  }
+}

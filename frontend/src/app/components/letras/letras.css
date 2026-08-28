@@ -105,3 +105,31 @@
   white-space: pre-line;
   margin: 0;
 }
+
+@media (max-width: 768px) {
+  .main-letras {
+    padding: 0.9rem;
+    gap: 1.5rem;
+  }
+
+  .letras-buscar input {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .letras-buscar button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .repertorio-letrasCanciones h2 {
+    font-size: 0.9rem;
+  }
+
+  .repertorio-letrasCanciones p,
+  .letras-cancionEncontrada p {
+    font-size: 0.85rem;
+  }
+}

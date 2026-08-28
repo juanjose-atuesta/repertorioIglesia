@@ -167,3 +167,23 @@
     margin-top: 0.5rem;
   }
 }
+
+@media (max-width: 480px) {
+  .main-setRepertorio h2,
+  .main-actualRepertorio h2 {
+    font-size: 1.2rem;
+  }
+
+  .main-setRepertorio input[type="text"] {
+    font-size: 0.85rem;
+  }
+
+  .main-setRepertorio button {
+    font-size: 0.8rem;
+    padding: 0.5rem 0.8rem;
+  }
+
+  .main-actualRepertorio li {
+    font-size: 0.85rem;
+  }
+}

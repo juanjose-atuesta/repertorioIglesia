@@ -22,15 +22,17 @@
     <input type="text" placeholder="Nombre de la cancion" [(ngModel)]="cancionBuscar">
     <button (click)="buscarCancion(cancionBuscar)">Buscar</button>
     </div>
-      <div class="busqueda-resultado">
-      <img
+<div class="busqueda-resultado">
+  <div class="resultado-imagen-wrapper">
+    <img
       [src]="urlCancion()"
-      alt="hola"
-        class="imagenEncontrada"
-        (click)="abrirEnNuevaPestana(urlCancion())"
-        title="Click para abrir en una nueva pestaña"
-      />
-    </div>
+      alt="Canción encontrada"
+      class="imagenEncontrada"
+      (click)="abrirEnNuevaPestana(urlCancion())"
+      title="Click para abrir en una nueva pestaña"
+    />
+  </div>
+</div>
 
   </div>
 </div>

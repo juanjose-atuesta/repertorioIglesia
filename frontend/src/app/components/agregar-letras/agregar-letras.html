@@ -2,5 +2,5 @@
   <h3>Agregar Canción</h3>
   <input type="text" [(ngModel)]="nombreInput" placeholder="Nombre de la canción">
   <textarea [(ngModel)]="letraInput" placeholder="Letra de la canción" rows="8"></textarea>
-  <button (click)="guardarCancion(nombreInput, letraInput)">Guardar</button>
+  <button (click)="guardarCancion(nombreInput(), letraInput())">Guardar</button>
 </div>

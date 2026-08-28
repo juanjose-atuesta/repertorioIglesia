@@ -175,3 +175,53 @@
   padding: 1rem;
   font-style: italic;
 }
+
+.busqueda-resultado {
+  margin-top: 0.75rem;
+}
+
+.imagenEncontrada {
+  width: 100%;
+  max-height: 250px;
+  object-fit: contain;
+  cursor: pointer;
+  border-radius: 8px;
+  background: #0d0d1a;
+  transition: transform 0.2s;
+}
+
+.imagenEncontrada:hover {
+  transform: scale(1.03);
+}
+
+@media (max-width: 768px) {
+  .canciones-container {
+    padding: 0.9rem;
+  }
+
+  .cancion-imagen,
+  .resultado-imagen,
+  .imagenEncontrada {
+    max-height: 220px;
+  }
+
+  .busqueda-input {
+    flex-direction: column;
+  }
+
+  .busqueda-input button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .canciones-container h3 {
+    font-size: 1rem;
+  }
+
+  .cancion-imagen,
+  .resultado-imagen,
+  .imagenEncontrada {
+    max-height: 180px;
+  }
+}
