@@ -14,7 +14,7 @@ export class Servicios {
 
 
 
-  apiURL: string = "http://localhost:3002/api/"
+  apiURL: string = "https://backendiglesiaapi/api/"
   guardarRepertorio(canciones: string[]) {
     return this.http.post(this.apiURL + 'repertorio', canciones);
 
