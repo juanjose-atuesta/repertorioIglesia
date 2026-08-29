@@ -1,15 +1,6 @@
 
 <div class="main-letras">
-<div class="letras-repertorio">
-    <div *ngFor="let i of cancionesRepertorio()" class="repertorio-letrasCanciones" >
-      <h2>{{i.nombre}}</h2>
-      <p>{{i.letra}}</p>
-        <hr>
-    </div>
-
-</div>
-
-<div class="letras-buscar">
+  <div class="letras-buscar">
 
     <input type="text" [(ngModel)]="cancionBuscarLetra">
     <button (click)="buscarLetraCancion(cancionBuscarLetra)">Buscar</button>
@@ -19,6 +10,17 @@
     </div>
 
 </div>
+
+<div class="letras-repertorio">
+    <div *ngFor="let i of cancionesRepertorio()" class="repertorio-letrasCanciones" >
+      <h2>{{i.nombre}}</h2>
+      <p>{{i.letra}}</p>
+        <hr>
+    </div>
+
+</div>
+
+
 
 <app-agregar-letras></app-agregar-letras>
 </div>

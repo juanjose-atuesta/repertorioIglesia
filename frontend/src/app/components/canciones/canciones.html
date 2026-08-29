@@ -1,4 +1,23 @@
 <div class="canciones-container">
+    <div class="canciones-busqueda">
+    <div class="busqueda-input">
+    <input type="text" placeholder="Nombre de la cancion" [(ngModel)]="cancionBuscar">
+    <button (click)="buscarCancion(cancionBuscar)">Buscar</button>
+    </div>
+<div class="busqueda-resultado">
+  <div class="resultado-imagen-wrapper">
+    <img
+      [src]="urlCancion()"
+      alt="Canción encontrada"
+      class="imagenEncontrada"
+      (click)="abrirEnNuevaPestana(urlCancion())"
+      title="Click para abrir en una nueva pestaña"
+    />
+  </div>
+</div>
+
+  </div>
+
   <h3>Canciones del Repertorio</h3>
   <div class="canciones-lista">
     <div class="cancion-item" *ngFor="let cancion of repositorioActual()">
@@ -16,23 +35,5 @@
     <p class="vacio" *ngIf="repositorioActual().length === 0">
       No hay canciones en el repertorio.
     </p>
-  </div>
-  <div class="canciones-busqueda">
-    <div class="busqueda-input">
-    <input type="text" placeholder="Nombre de la cancion" [(ngModel)]="cancionBuscar">
-    <button (click)="buscarCancion(cancionBuscar)">Buscar</button>
-    </div>
-<div class="busqueda-resultado">
-  <div class="resultado-imagen-wrapper">
-    <img
-      [src]="urlCancion()"
-      alt="Canción encontrada"
-      class="imagenEncontrada"
-      (click)="abrirEnNuevaPestana(urlCancion())"
-      title="Click para abrir en una nueva pestaña"
-    />
-  </div>
-</div>
-
   </div>
 </div>
