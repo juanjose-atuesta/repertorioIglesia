@@ -12,9 +12,9 @@
 </div>
 
 <div class="letras-repertorio">
-    <div *ngFor="let i of cancionesRepertorio()" class="repertorio-letrasCanciones" >
-      <h2>{{i.nombre}}</h2>
-      <p>{{i.letra}}</p>
+    <div class="repertorio-letrasCanciones" >
+        <h2>{{cancionActual()}}</h2>
+      <p>{{letraCancionActual()}}</p>
         <hr>
     </div>
 

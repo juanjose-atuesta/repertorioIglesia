@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Servicios } from '../../services/servicios/servicios';
@@ -12,13 +13,20 @@ import { signal } from '@angular/core';
 export class Repertorio {
 
   constructor(
-    private servicios: Servicios
+    public servicios: Servicios
 
   ) { }
   contador: number = 1;
   canciones: string[] = [];
   repertorioActual = signal<string[]>([]);
 
+  cancionesTerminadas: string[] = [];
+
+  terminarCancion(cancion: string): void {
+    if (!this.cancionesTerminadas.includes(cancion)) {
+      this.cancionesTerminadas.push(cancion);
+    }
+  }
   onSubmit() {
     console.log("hola");
   }
@@ -46,7 +54,7 @@ export class Repertorio {
     console.log("estas canciones se agregaron al repertorio");
     console.log(this.canciones);
 
-    this.servicios.guardarRepertorio(this.canciones).subscribe({
+    this.servicios.guardarRepertorio(this.canciones.map(cancion => cancion.toLowerCase())).subscribe({
       next: (res) => {
         console.log('Guardado:', res);
         this.obtenerRepertorioActual(); // llama esto DESPUÉS de que el guardado terminó
@@ -69,7 +77,15 @@ export class Repertorio {
     console.log("ngOnInit")
   }
 
+  seleccionarCancion(nombre: string) {
+    console.log("seleccionaste una cancion", nombre);
+    this.servicios.guardarCurrentSong(nombre).subscribe({
+      next: resultado => {
 
+        this.servicios.actualizarCancionSeleccionada(nombre);
+      }
+    })
+  }
 
 
 }

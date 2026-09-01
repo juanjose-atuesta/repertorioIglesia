@@ -10,11 +10,17 @@
       <button type="submit" (click)="agregarRepertorio()">Guardar</button>
     </form>
   </div>
-
   <div class="main-actualRepertorio">
     <h2>Repertorio Actual</h2>
-    <ul>
-      <li *ngFor="let i of repertorioActual()">{{ i }}</li>
-    </ul>
+<ul>
+  <li
+    [class.liOK]="cancionesTerminadas.includes(i)"
+    class="liNot"
+    *ngFor="let i of repertorioActual()"
+    (click)="seleccionarCancion(i)">
+    {{ i }}
+    <button  (click)="terminarCancion(i); $event.stopPropagation()">Terminar</button>
+  </li>
+</ul>
   </div>
 </div>

@@ -20,21 +20,18 @@
 
   <h3>Canciones del Repertorio</h3>
   <div class="canciones-lista">
-    <div class="cancion-item" *ngFor="let cancion of repositorioActual()">
+    <div class="cancion-item" >
 
-      <span class="cancion-nombre">{{ cancion }}</span>
+      <span class="cancion-nombre">{{ cancionActual()}}</span>
       <div class="cancion-imagen-wrapper">
         <img
-          [src]="servicios.obtenerUrlImagen(cancion)"
-          [alt]="cancion"
+          [src]="servicios.obtenerUrlImagen(cancionActual())"
+          [alt]="cancionActual()"
           class="cancion-imagen"
-          (click)="abrirEnNuevaPestana(servicios.obtenerUrlImagen(cancion))"
+          (click)="abrirEnNuevaPestana(servicios.obtenerUrlImagen(cancionActual()))"
           title="Click para abrir en nueva pestaña"
         />
       </div>
     </div>
-    <p class="vacio" *ngIf="repositorioActual().length === 0">
-      No hay canciones en el repertorio.
-    </p>
   </div>
 </div>

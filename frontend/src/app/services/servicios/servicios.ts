@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { CancionesConLetra } from './models';
 import { forkJoin } from 'rxjs'
 import { map, switchMap } from 'rxjs/operators'
@@ -14,8 +14,8 @@ export class Servicios {
 
 
 
-  apiURL: string = "https://backendiglesiaapi.juanjodev.win/api/";
-  //  apiURL: string = "http://localhost:3002/api/";
+  //  apiURL: string = "https://backendiglesiaapi.juanjodev.win/api/";
+  apiURL: string = "http://localhost:3002/api/";
   guardarRepertorio(canciones: string[]) {
     return this.http.post(this.apiURL + 'repertorio', canciones);
 
@@ -65,5 +65,17 @@ export class Servicios {
     return this.http.post(this.apiURL + "letras", cancion);
   }
 
+
+  obtenerCurrentSong() {
+    return this.http.get<string>(this.apiURL + "currentSong");
+  }
+  guardarCurrentSong(cancion: string) {
+    return this.http.post(this.apiURL + "setNewCurrentSong", { nombre: cancion });
+  }
+
+  cancionSeleccionada = signal("");
+  actualizarCancionSeleccionada(nombre: string) {
+    this.cancionSeleccionada.set(nombre);
+  }
 
 }

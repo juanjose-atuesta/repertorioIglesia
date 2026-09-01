@@ -128,13 +128,69 @@
   gap: 0.5rem;
 }
 
-.main-actualRepertorio li {
+.liNot {
   background: #16162a;
   border-left: 4px solid #34d399;
   padding: 0.65rem 1rem;
   border-radius: 0 8px 8px 0;
   font-size: 0.95rem;
   transition: background 0.2s, transform 0.15s;
+}
+
+.liOK{
+
+  background: #34d399;
+   transition: transform 0.15s;
+}
+
+.main-actualRepertorio li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.main-actualRepertorio li button {
+  padding: 0.4rem 0.9rem;
+  border: none;
+  border-radius: 6px;
+  background: #34d399;
+  color: #1a1a2e;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  flex-shrink: 0;
+}
+
+.main-actualRepertorio li button:hover {
+  background: #6ee7b7;
+}
+
+.main-actualRepertorio li button:active {
+  transform: scale(0.95);
+}
+
+/* ── Cuando la canción ya está marcada como terminada ── */
+.main-actualRepertorio li.liOK {
+  background: #34d39915;
+  border-left-color: #34d399;
+}
+
+.main-actualRepertorio li.liOK button {
+  background: #16162a;
+  color: #34d399;
+  border: 1px solid #34d399;
+}
+
+.main-actualRepertorio li.liOK button:hover {
+  background: #1f1f3a;
+}
+.main-container{
+  display: flex;
+  flex-direction: row;
 }
 
 .main-actualRepertorio li:hover {
