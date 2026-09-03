@@ -81,7 +81,7 @@ app.get('/api/repertorio', (req, res) => {
 });
 
 // Reemplazar el repertorio completo
-// Body esperado: ["cancion1.jpg", "cancion5.jpg"]
+// Body esperado: ["cancion1.jpg", "cancion5.pg]
 app.post('/api/repertorio', (req, res) => {
   const canciones = req.body;
 

@@ -18,6 +18,8 @@ export class Letras {
 
       if (cancion) {
         console.log('Reacciono al instante:', cancion);
+        window.location.reload();
+
       }
       this.cancionActual.set(cancion);
       this.setLetraCancion(cancion);

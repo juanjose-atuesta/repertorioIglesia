@@ -19,12 +19,13 @@ export class Repertorio {
   contador: number = 1;
   canciones: string[] = [];
   repertorioActual = signal<string[]>([]);
-
+  STORAGE_KEY = 'cancionesTerminadas';
   cancionesTerminadas: string[] = [];
 
   terminarCancion(cancion: string): void {
     if (!this.cancionesTerminadas.includes(cancion)) {
       this.cancionesTerminadas.push(cancion);
+      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.cancionesTerminadas)); // agregar esto
     }
   }
   onSubmit() {
@@ -74,6 +75,7 @@ export class Repertorio {
 
   ngOnInit() {
     this.obtenerRepertorioActual();
+    this.cargarCancionesTerminadas(); // agregar esto
     console.log("ngOnInit")
   }
 
@@ -87,5 +89,23 @@ export class Repertorio {
     })
   }
 
+  cargarCancionesTerminadas(): void {
+    const guardado = localStorage.getItem(this.STORAGE_KEY);
+    if (guardado) {
+      this.cancionesTerminadas = JSON.parse(guardado);
+    }
+  }
 
+
+  limpiarRepertorio(): void {
+    this.servicios.guardarRepertorio([]).subscribe({
+      next: (res) => {
+        console.log('Repertorio limpiado:', res);
+        this.repertorioActual.set([]);
+        this.cancionesTerminadas = [];
+        localStorage.removeItem(this.STORAGE_KEY); // limpia el localStorage también
+      },
+      error: (err) => console.error('Error al limpiar:', err)
+    });
+  }
 }

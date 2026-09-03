@@ -17,6 +17,7 @@ export class Canciones implements OnInit {
 
       if (cancion) {
         console.log('Reacciono al instante:', cancion);
+        window.location.reload();
       }
       this.cancionActual.set(cancion);
     });
