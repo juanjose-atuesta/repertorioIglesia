@@ -17,7 +17,6 @@ export class Canciones implements OnInit {
 
       if (cancion) {
         console.log('Reacciono al instante:', cancion);
-        window.location.reload();
       }
       this.cancionActual.set(cancion);
     });
@@ -33,6 +32,10 @@ export class Canciones implements OnInit {
         this.cancionActual.set(cancion);
       }
     })
+  }
+  refrescar() {
+    window.location.reload();
+
   }
   /* esta funcion no se usa por ahora
     obtenerRepertorioActual() {

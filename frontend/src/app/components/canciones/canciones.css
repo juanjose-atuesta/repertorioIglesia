@@ -243,3 +243,19 @@
 .btn-limpiar:hover {
   background: #f87171;
 }
+
+.cancion-item button{
+  padding: 0.55rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: #34d399;
+  color: #1a1a2e;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.cancion-item button:hover {
+  background: #6ee7b7;
+}
