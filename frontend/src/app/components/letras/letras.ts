@@ -49,7 +49,7 @@ export class Letras {
 
 
   buscarLetraCancion(cancion: string) {
-    this.servicios.buscarLetraCancion(cancion).subscribe({
+    this.servicios.buscarLetraCancion(cancion.toLowerCase()).subscribe({
       next: cancion => {
         console.log("se ejecuto el buscar letra");
         this.letraCancionBuscado.set(cancion.letra);
